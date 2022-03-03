@@ -1,6 +1,6 @@
 from socket import *
-serverName = "10.10.168.16"
-serverPort = 12000
+serverName = "0.0.0.0"
+serverPort = 12009
 clientSocket = socket(AF_INET, SOCK_STREAM)
 clientSocket.connect((serverName, serverPort))
 sentence = input("Input lowercase sentence:")
