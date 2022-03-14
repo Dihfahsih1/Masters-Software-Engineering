@@ -1,0 +1,28 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname Exercise_2) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;; EXERCISE 2.17
+;: (last-pair (list 23 72 149 34))
+;: (34)
+
+;(define (last-pair l)
+;  (define (last-pair-iter l)
+ ;   (if (null? (cdr l))
+;        (list (car l))
+  ;      (last-pair-iter (cdr l))))
+  ;(if (null? l)
+   ;   'empty
+    ;  (last-pair-iter l)))
+
+;(last-pair (list 23 72 149 34))
+
+(define (square-list items)
+  (if (null? items)
+      '()
+      (cons (square (car items))
+            (square-list (cdr items)))))
+
+(define (square-list items)
+  (map square items))
+
+(square-list (list 1 2 3 4))

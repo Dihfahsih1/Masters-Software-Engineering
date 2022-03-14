@@ -1,0 +1,23 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname Exercise_36) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;exercise_36
+(define (accumulate-n op init seqs)
+(if (null? (car seqs))nil
+(cons (accumulate op init <??>)
+(accumulate-n op init <??>))))
+
+
+;; Answer
+
+; We cons together the accumulation of the the first element of each
+; list in seqs (by mapping each sublist to its car) and the
+; n-accumulation of the cdrs of each sublist of seqs.
+(define (accumulate-n op init seqs)
+  (if (null? (car seqs))
+      '()
+      (cons (accumulate op init (map (lambda (l) (car l)) seqs))
+            (accumulate-n op init (map (lambda (l) (cdr l)) seqs)))))
+
+;: (accumulate-n + 0 s)
+
