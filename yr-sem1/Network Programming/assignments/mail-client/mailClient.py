@@ -7,17 +7,19 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 import getpass
+import pwinput
 
 context = ssl.create_default_context()
 port = 465
 smtp_server="smtp.gmail.com"
 
 sender_email ="dihfahsih@gmail.com"
-password = getpass.getpass("Type your password and press enter: ")
+password = pwinput.pwinput("Type your password and press enter: ")
   
 
 msg = MIMEMultipart()
 msg['from']= "Mail Client"
+msg['subject'] = "Testing Mail Client Using gmail"
 
 with open('mail.html', 'r', encoding="utf8") as file:
     data = file.read().replace('\n', '')
