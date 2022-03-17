@@ -1,12 +1,8 @@
 import smtplib
 import csv
-import time
 import ssl
-from email import encoders
 from email.mime.text import MIMEText
-from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
-import getpass
 import pwinput
 
 context = ssl.create_default_context()
@@ -21,14 +17,14 @@ msg = MIMEMultipart()
 msg['from']= "Mail Client"
 msg['subject'] = "Testing Mail Client Using gmail"
 
-with open('mail.html', 'r', encoding="utf8") as file:
-    data = file.read().replace('\n', '')
+with open('html_template.html', 'r', encoding="utf8") as file:
+    data = file.read()
+    
 count = 0
 
 with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
   server.login(sender_email, password)
-  
-  
+   
   with open("mail_list.csv") as file:
       reader = csv.reader(file)
       next(reader)
