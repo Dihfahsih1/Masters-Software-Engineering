@@ -11,7 +11,6 @@ smtp_server="smtp.gmail.com"
 
 sender_email ="dihfahsih@gmail.com"
 password = pwinput.pwinput("Type your password and press enter: ")
-  
 
 msg = MIMEMultipart()
 msg['from']= "Mail Client"
