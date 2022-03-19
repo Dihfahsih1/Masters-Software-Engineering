@@ -3,7 +3,7 @@
 #reader(lib "htdp-beginner-reader.ss" "lang")((modname square) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
 
 (define p 3.14)
-(define radius 10)
+(define radius 10); finding the area using radius and the pi
 
 (define(area r)
   (* p r r)

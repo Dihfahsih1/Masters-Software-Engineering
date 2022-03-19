@@ -1,7 +1,9 @@
-"""
- Implements a simple HTTP/1.0 Server
-
-"""
+#(i) create a connection socket when contacted by a client (browser);
+#(ii) receive the HTTP requestfrom this connection;
+#(iii) parse the request to determine the specific file being requested; 
+#(iv) get the requested file from the server’s file system; 
+#(v) create an HTTP response message consisting of the requested file preceded by header lines;
+#(vi) send the response over the TCP connection to the requesting browser
 
 import socket
 
