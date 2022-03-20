@@ -6,8 +6,6 @@
 #(vi) send the response over the TCP connection to the requesting browser
 
 import socket
-
-
 # Define socket host and port
 SERVER_HOST = '0.0.0.0'
 SERVER_PORT = 8000
@@ -48,6 +46,8 @@ while True:
       
     client_connection.sendall(response.encode())
     client_connection.close()
+    
+    print("break the loop")
 
 # Close socket
 server_socket.close()
