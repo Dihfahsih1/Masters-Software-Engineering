@@ -3,11 +3,18 @@
 
 
 (define withdraw
-  (let ((balance 100))
+  (let ((balance 1000))
     (lambda (amount)
   (if (>= balance amount)
       (begin (set! balance (- balance amount))
              balance)
       "Insufficient funds"))))
 
-(withdraw 90)
+(withdraw 100)
+
+(define money 10)
+(define adding 
+ (lambda *(withdraw money))
+)
+  
+(adding)
