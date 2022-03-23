@@ -1,3 +1,14 @@
-#lang racket
-(define sum-them-all +)
-(sum-them-all 10)
+#lang scheme
+
+;Qtn 5
+(define (sum-them-all . numbers)
+  (apply + numbers)
+  )
+(sum-them-all -10 20 30 40)
+
+;Qtn 6
+;Use sum-them-all func to compute average
+(define (average . numbers) 
+    (/(apply + numbers) (length numbers))
+
+(average 10 20 30 40);call the averaging function

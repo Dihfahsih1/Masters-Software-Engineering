@@ -1,27 +1,14 @@
-import socket
+#MAC address spoofing using Python:
 
-# s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket. htons(0x0003))
+import subprocess as sub
 
-# s.bind(("mon0", 0x0003))
+interface = "wlp2s0"
 
-# ap_list = []
+#fe80::2fd3:bfe6:6d8f:3efb
+new_mac = "08:00:27:02:3a:52"
 
-# while True:
-#   packet = s.recvfrom(2048)
-#   if packet[26] == "\x80" :
-#     if packetkt[36:42] not in ap_list and ord(packetkt[63]) > 0:
-#         ap_list.add(packetkt[36:42])
-        
-#   print("SSID:",(pkt[64:64+ord(pkt[63])],pkt[36:42].encode('hex')))
+sub.call(['sudo', 'ifconfig', interface, 'down'])
 
-from scapy.all import *
-i = 1
+sub.call(['sudo', 'ifconfig', interface, 'hw', 'wlp2s0', new_mac])
 
-def deauth_frame(pkt):
-  if pkt.haslayer(Dot11):
-    if ((pkt.type == 0) & (pkt.subtype == 12)):
-      global i
-      print ("Deauth frame detected: ", i)
-      i = i + 1
-  sniff(iface = "mon0", prn = deauth_frame)
-  print("Error")
+sub.call(['sudo', 'ifconfig', interface, 'up'])
