@@ -1,0 +1,12 @@
+#lang racket
+(define (remove x 1st)
+  (cond
+    ((null? 1st) '())
+    ((= x (car 1st))(remove x (cdr 1st)))
+    (else (cons (car 1st) (remove x (cdr 1st))))))
+
+(define (permute 1st)
+  (cond
+    ((= (length 1st) 1)(list 1st))
+    (else (apply append(map(lambda(i) (map (lambda (j) (cons i j))
+                                           (permute(remove i 1st)))) 1st)))))

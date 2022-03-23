@@ -15,18 +15,13 @@ import socket
 #   print("SSID:",(pkt[64:64+ord(pkt[63])],pkt[36:42].encode('hex')))
 
 from scapy.all import *
-probe_list = []
+i = 1
 
-ap_name= input("Enter the name of access point")
-
-def Probe_info(pkt) :
-   if pkt.haslayer(Dot11ProbeReq) :
-      client_name = pkt.info
-      
-      if client_name == ap_name :
-         if pkt.addr2 not in Probe_info:
-            print("New Probe request--", client_name)
-            print("MAC is --", pkt.addr2)
-            probe_list.append(pkt.addr2)
-            
-sniff(iface = "mon0", prn = Probe_info)
+def deauth_frame(pkt):
+  if pkt.haslayer(Dot11):
+    if ((pkt.type == 0) & (pkt.subtype == 12)):
+      global i
+      print ("Deauth frame detected: ", i)
+      i = i + 1
+  sniff(iface = "mon0", prn = deauth_frame)
+  print("Error")
