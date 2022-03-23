@@ -1,0 +1,7 @@
+#lang racket
+(define (deep-sum ls)
+  (cond ((null? ls) 0)
+        ((not (pair? ls))            ; only add atoms
+         (if (number? ls) ls 0))     ; only add numbers
+        (else (+ (deep-sum (car ls)) ; advance recursion on both car and car
+                 (deep-sum (cdr ls))))))

@@ -1,0 +1,10 @@
+#lang racket
+(define (max a b) (if (> a b) a b))
+
+(define (max-of-many a)
+  (let loop [(x -inf.0) (a a)] ;;-inf.0 (negative infinity)
+    (if (empty? a)
+        (list x)
+        (loop (max (car a) x) (cdr a)))))
+
+(max-of-many '(10 20 30 40))
