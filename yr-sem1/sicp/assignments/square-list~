@@ -1,0 +1,10 @@
+#lang racket
+(define (square-list lst)
+(define (square x) (* x x))
+(define (square-iter lst sqrd-lst)
+(if (null? lst)
+sqrd-lst
+(square-iter (cdr lst)
+(cons (square (car lst))
+sqrd-lst ))))
+(square-iter lst ’()))

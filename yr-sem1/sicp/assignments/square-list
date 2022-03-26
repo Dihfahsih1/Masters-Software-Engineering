@@ -1,0 +1,23 @@
+#lang scheme
+;QTN 7
+;(a) the results returned are just accummulated
+      ;and need to be reversed to get the desired output
+;(b) fix the bug
+(define (square-list lst)
+  (define (square x)(* x x))
+  (define (square-iter lst sqrd-lst)
+    (if (null? lst)
+        (reverse sqrd-lst); introduce reverse on the output.
+        (square-iter (cdr lst) (cons (square (car lst)) sqrd-lst ))))
+(square-iter lst '()))
+
+(square-list '(1 2 3 4 5))
+
+;(c) using a recursive function
+(define (square-list-r lst)
+  (cond ((empty? lst)
+         empty)
+        (else
+         (cons (* (car lst) (car lst))
+               (square-list-r (cdr lst))))))
+(square-list-r '(1 2 3 4 5))
