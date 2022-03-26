@@ -1,6 +1,10 @@
 #lang scheme
 
 ;QTN ONE
+;Write a program bubblesort that takes a list of numbers and returns the
+;list in sorted order. For example:
+;% (bubblesort (quote (1 4 2 8 5 7)))
+;(1 2 4 5 7 8)
 
 (define (bubble L)
  (if (null? (cdr L))

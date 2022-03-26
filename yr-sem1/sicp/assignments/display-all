@@ -6,6 +6,8 @@
                     (cons v (insert-between v (cdr xs)))))))
 
 (define (display-all . vs)
-  (for-each display (insert-between " " vs)))
+  (for-each display (insert-between  " " vs))
+  (newline))
 
-(display-all "blah" 4 "bloo")
+(display-all "foo")
+(display-all "foo" "bar")

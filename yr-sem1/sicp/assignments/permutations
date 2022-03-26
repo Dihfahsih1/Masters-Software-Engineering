@@ -1,83 +1,14 @@
 #lang scheme
-
-;; generate all possible perumations of a list of numbers (a set of numbers)
-;;
-;; assumption is that no two numbers are the same!
-;;
-
-;; general strategy:
-;;  1. generate all possible permutations that keep the first number fixed.
-;;  2. generate all possible permutations that have something else for the
-;;     first number.
-;;  append lists produces by 1. and 2.
-;;
-;;
-;;  1.1 need to generate all permutations of the rest of the list,
-;;   and then add element to the beginning of each of the lists produced.
-;;   add-element-to-lists is defined below:
-
-
-;;
-;; add-element-to-lists consumes a number and a list of lists,
-;;  and produces a list of lists.
-;;
-;; (add-element-to-lists elem lists) creates a list of lists, containing
-;; one entry for each list found in lists (each element of lists is a list of 
-;;  numbers). Each list generated gets elem tacked on the beginning of it.
-(define (add-element-to-lists elem lists)
-  (cond 
-   [(empty? lists) empty]
-   [ else
-	 (cons 
-	  (cons elem (first lists))
-	  (add-element-to-lists elem (rest lists)))]))
-
-(define (permutations alist)
-  (cond
-   ;; empty list has no permutations, but we need to return a list)
-   [(empty? alist) (list empty)]
-   ;; single element has only one permutation, but we need to
-   ;;  return a list of lists.
-   [(empty? (rest alist)) (list alist)]
-   [ else
-	 ;; more than one element - generate all lists by generating
-	 ;; the lists (permutations) that start with each element in turn
-	 (use-each-element-as-start alist)]))
-
-(define (use-each-element-as-start alist)
-  (use-each-element-as-start-helper empty alist))
-
-
-;;
-;; use-each-element-as-start-helper consumes two lists of numbers 
-;;    and returns a list of lists of numbers
-;;
-;; (use-each-element-as-start-helper done remaining) generates all
-;; permutations of the elements defined in the two lists combined,
-;;  such that the first element in the permutation is found in the list
-;;  named remaining. Calls itself recursively to step over all the elements
-;;  in remaining.
-;;
-;;  Note: uses add-element-to-lists to attach an element to the
-;;   beginning of lists produces in call to generate-permutations
-;;   (sort of a recursive call).
-;;
-
-(define (use-each-element-as-start-helper done remaining)
-  (cond
-   ;; if remaining is empty we don't need to do anything
-   [(empty? remaining) empty]
-   [else
-	;; combine the lists produced by generating all permutations
-	;; that start with (first remaining), with the lists produced
-	;; that start with everything else.
-	(append
-	 (add-element-to-lists
-	  (first remaining)
-	  (permutations
-	   (append done (rest remaining))))
-	 (use-each-element-as-start-helper
-	  (append done (list (first remaining)))
-	  (rest remaining)))]))
+(define (permutations s)
+  (cond [(empty? s) empty]
+        [(empty? (rest s)) (list s)]
+        [else
+         (let splice [(l '()) (m (first s)) (r (rest s))]
+           (append
+            (map (lambda (x) (cons m x))
+                 (permutations (append l r)))
+            (if (empty? r)
+                empty
+                (splice (cons m l) (car r) (cdr r)))))]))
 
 (permutations '(1 2 3))
