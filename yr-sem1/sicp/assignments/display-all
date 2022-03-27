@@ -1,4 +1,7 @@
 #lang racket
+;;QTN 5
+;; Custom display-all function
+
 (define (insert-between v xs)
   (cond ((null? xs) xs)
         ((null? (cdr xs)) xs)

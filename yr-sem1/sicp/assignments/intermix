@@ -1,5 +1,6 @@
 #lang racket
 ;QTN 8
+;; intermix function to merge two lists into one
 (define (intermix 1st 2nd)
   (cond ((null? 1st) 2nd)
         ((null? 2nd) 1st)

@@ -1,6 +1,8 @@
 #lang scheme
 
 ;Qtn 5
+;; Sum-them-all function
+
 (define (sum-them-all . numbers)
   (apply + numbers)
   )

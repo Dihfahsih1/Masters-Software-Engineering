@@ -1,4 +1,8 @@
 #lang scheme
+
+;qtn 2
+;Permutation
+
 (define (permutations s)
   (cond [(empty? s) empty]
         [(empty? (rest s)) (list s)]
