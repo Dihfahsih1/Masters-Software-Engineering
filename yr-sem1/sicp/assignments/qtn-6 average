@@ -1,10 +1,15 @@
 #lang racket
-;Qtn 6
-;func to compute average
-(define (average . numbers) 
-    (/(apply + numbers) (length numbers))
-  )
+;Qtn 5
+;; Sum-them-all function
 
-(average 10 20 30 40)
-(average 10 20 30)
-(average 10)
+(define (sum-them-all x)
+    (if (null? x)
+        0
+        (+ (car x) (sum-them-all (cdr x)))))
+
+;Qtn 6 using sum-them-all to find the average
+(define (average x)
+    (/ (sum-them-all x) (length x)))
+(average '(10 20 30 40))
+(average '(10 20 30))
+(average '(10))

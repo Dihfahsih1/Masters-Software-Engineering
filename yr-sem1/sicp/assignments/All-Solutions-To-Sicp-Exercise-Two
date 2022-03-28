@@ -1,0 +1,114 @@
+#lang racket
+;QTN ONE
+;bubblesort
+
+(define (bubble L)
+ (if (null? (cdr L))
+  L
+  (if (< (car L) (cadr L))
+      (cons(car L) (bubble (cdr L)))
+      (cons(cadr L) (bubble (cons (car L) (cddr L)))))))
+
+(define (bubble-sort N L)
+  (cond (( = N 1 ) (bubble L))
+        (else (bubble-sort ( - N 1 ) (bubble L)))))
+  
+(bubble-sort 6 (list 132 4 2 8 5 7))
+
+;qtn 2
+;Permutation
+
+(define (permutations s)
+  (cond [(empty? s) empty]
+        [(empty? (rest s)) (list s)]
+        [else
+         (let splice [(l '()) (m (first s)) (r (rest s))]
+           (append
+            (map (lambda (x) (cons m x))
+                 (permutations (append l r)))
+            (if (empty? r)
+                empty
+                (splice (cons m l) (car r) (cdr r)))))]))
+
+(permutations '(1 2 3))
+
+;;QTN 3
+;;maximum-of-many
+(define (maximum-of-many L)
+     (if (null? (cdr L)) 
+         (car L) 
+         (if (< (car L) (maximum-of-many (cdr L)))  
+             (maximum-of-many (cdr L)) 
+             (car L))))
+
+(maximum-of-many '(10 20 30 40))
+(maximum-of-many '(12 8))
+
+;;QTN 4
+;; Custom display-all function
+
+(define (insert-between v xs)
+  (cond ((null? xs) xs)
+        ((null? (cdr xs)) xs)
+        (else (cons (car xs)
+                    (cons v (insert-between v (cdr xs)))))))
+
+(define (display-all . vs)
+  (for-each display (insert-between  " " vs))
+  (newline))
+
+(display-all "foo")
+(display-all "foo" "bar")
+
+;Qtn 5
+;; Sum-them-all function
+
+(define (sum-them-all . numbers)
+  (apply + numbers)
+  )
+(sum-them-all 10 20 30 40)
+(sum-them-all 12 8 2)
+
+;Qtn 6
+;func to compute average
+(define (average . numbers) 
+    (/(apply + numbers) (length numbers))
+  )
+
+(average 10 20 30 40)
+(average 10 20 30)
+(average 10)
+
+;QTN 7
+;(a) the results returned are just accummulated
+      ;and need to be reversed to get the desired output
+;(b) fix the bug
+(define (square-list lst)
+  (define (square x)(* x x))
+  (define (square-iter lst sqrd-lst)
+    (if (null? lst)
+        (reverse sqrd-lst); introduce reverse on the output.
+        (square-iter (cdr lst) (cons (square (car lst)) sqrd-lst ))))
+(square-iter lst '()))
+
+(square-list '(1 2 3 4 5))
+
+;(c) using a recursive function
+(define (square-list-r lst)
+  (cond ((empty? lst)
+         empty)
+        (else
+         (cons (* (car lst) (car lst))
+               (square-list-r (cdr lst))))))
+(square-list-r '(1 2 3 4 5))
+
+;QTN 8
+;; intermix function to merge two lists into one
+(define (intermix 1st 2nd)
+  (cond ((null? 1st) 2nd)
+        ((null? 2nd) 1st)
+        (else
+         (cons (car 1st) (intermix 2nd (cdr 1st))))
+        ))
+
+(intermix '(1 2 3 4 5 6) '(a b c d e f))

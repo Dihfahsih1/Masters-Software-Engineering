@@ -1,0 +1,12 @@
+#lang scheme
+
+;Qtn 5
+;; Sum-them-all function
+
+(define (sum-them-all x)
+    (if (null? x)
+        0
+        (+ (car x) (sum-them-all (cdr x)))))
+(sum-them-all '(10 20 30 40))
+(sum-them-all '(12 8 2))
+

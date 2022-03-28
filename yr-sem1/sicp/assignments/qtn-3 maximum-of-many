@@ -1,13 +1,12 @@
 #lang racket
 ;;QTN 3
 ;;maximum-of-many
-(define (max a b) (if (> a b) a b))
-
-(define (maximum-of-many a)
-  (let loop [(x -inf.0) (a a)] ;;-inf.0 (negative infinity)
-    (if (empty? a)
-        (list x)
-        (loop (max (car a) x) (cdr a)))))
+(define (maximum-of-many L)
+     (if (null? (cdr L)) 
+         (car L) 
+         (if (< (car L) (maximum-of-many (cdr L)))  
+             (maximum-of-many (cdr L)) 
+             (car L))))
 
 (maximum-of-many '(10 20 30 40))
 (maximum-of-many '(12 8))
