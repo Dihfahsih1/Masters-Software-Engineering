@@ -1,5 +1,8 @@
 
-const APP_ID = 'YOUR APP ID'
+const APP_ID = "{% get_env_var 'Appid' %}"
+const CHANNELL = 'Channel_name'
+const TOKENN = "{% get_en_var 'Token' %}"
+
 const TOKEN = sessionStorage.getItem('token')
 const CHANNEL = sessionStorage.getItem('room')
 let UID = sessionStorage.getItem('UID')
