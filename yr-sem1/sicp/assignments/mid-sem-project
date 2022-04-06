@@ -1,16 +1,49 @@
 #lang scheme
+(require rnrs/mutable-pairs-6)
+
 (define (make-point x y)
   (cons x y))
-(define (point-x p)
-  (car p)
- (define set-x!( set! x p))
+
+(define (point-x p)  
+  (car p) 
+ )
 
 (define (point-y p)
-(cdr p))
-(define (pretty-print p)
-(list 'x: (point-x p) 'y: (point-y p)))
+  (cdr p))
 
+;the setter operation to update x value in make-point with a new value 10
+(define (set-x! p)
+  (begin (set! point-x 10)
+         point-x))
+
+;the setter operation to update y value in make-point with a new value 20
+(define (set-y! p)
+  (begin (set! point-y 20)
+         point-y))
+
+;Copying the object point make-point
+
+(define (clone make-point p)
+  (let ((new (p)))
+    (set-car! new p)
+    (set-cdr! new p)
+    new))
+  
+
+
+
+(define (pretty-print p)
+  (list 'x: (point-x p) 'y: (point-y p)))
 (pretty-print (make-point 2 3))
+
+(define (copy-print p)
+  (list 'copy-x: (point-x p) 'copy-y: (point-y p)))
+(copy-print (clone 20 40))
+ 
+
+
+
+
 
 
 
