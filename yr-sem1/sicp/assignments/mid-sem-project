@@ -10,7 +10,7 @@
 
 (define (point-y p)
   (cdr p))
-
+;QTN 1
 ;the setter operation to update x value in make-point with a new value 10
 (define (set-x! p)
   (begin (set! point-x 10)
@@ -20,15 +20,27 @@
 (define (set-y! p)
   (begin (set! point-y 20)
          point-y))
-
+;QTN 2
 ;Copying the object point make-point
 
-(define (clone make-point p)
-  (let ((new (p)))
-    (set-car! new p)
-    (set-cdr! new p)
-    new))
-  
+(define (clone p)
+  (make-point(car p) (cdr p)))
+(define (copy-print p)
+  (list 'copy-x: (point-x p) 'copy-y: (point-y p)))
+(copy-print (clone (make-point 12 34)))
+ 
+ ;QTN 3 
+;Distance between two given points
+;(x1, y1) and (x2, y2)
+; d = (sqrt(+(square (- x2 x1)) (square(-y2 y1))))
+;both sqrt(squareroot) and sqr(square) are abstract functiins that have their implementation in scheme
+;so just use them directly cos they are already defined in the language
+(define (distance p1 p2)
+  (sqrt
+   (+ (sqr (- (point-x p1) (point-x p2)))
+      (sqr (- (point-y p1) (point-y p2))))))
+
+(distance (make-point 1 2) (make-point 6 7))
 
 
 
@@ -36,9 +48,7 @@
   (list 'x: (point-x p) 'y: (point-y p)))
 (pretty-print (make-point 2 3))
 
-(define (copy-print p)
-  (list 'copy-x: (point-x p) 'copy-y: (point-y p)))
-(copy-print (clone 20 40))
+
  
 
 
