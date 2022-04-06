@@ -13,21 +13,19 @@
 ;QTN 1
 ;the setter operation to update x value in make-point with a new value 10
 (define (set-x! p)
-  (begin (set! point-x 10)
+  (begin (set! point-x p)
          point-x))
 
 ;the setter operation to update y value in make-point with a new value 20
 (define (set-y! p)
-  (begin (set! point-y 20)
+  (begin (set! point-y p)
          point-y))
 ;QTN 2
 ;Copying the object point make-point
-
 (define (clone p)
   (make-point(car p) (cdr p)))
 (define (copy-print p)
   (list 'copy-x: (point-x p) 'copy-y: (point-y p)))
-(copy-print (clone (make-point 12 34)))
  
  ;QTN 3 
 ;Distance between two given points
@@ -47,14 +45,7 @@
 (define (pretty-print p)
   (list 'x: (point-x p) 'y: (point-y p)))
 (pretty-print (make-point 2 3))
-
-
- 
-
+(copy-print (clone (make-point 12 34)))
 
 
 
-
-
-
-;solution
