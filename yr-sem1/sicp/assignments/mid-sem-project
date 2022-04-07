@@ -1,6 +1,10 @@
 #lang scheme
 (require rnrs/mutable-pairs-6)
 
+(define x 7)
+(define y 4)
+
+
 (define (make-point x y)
   (cons x y))
 
@@ -41,11 +45,17 @@
 (distance (make-point 1 2) (make-point 6 7))
 
 
-
 (define (pretty-print p)
   (list 'x: (point-x p) 'y: (point-y p)))
 (pretty-print (make-point 2 3))
 (copy-print (clone (make-point 12 34)))
 
 
+;QTN 5
+(define (point=? point-1 point-2) 
+   (if (and (pair? point-1) (pair? point-2)) 
+       (and (point=? (car point-1) (car point-2)) (point=? (cdr point-1) (cdr point-2))) 
+       (eq? point-1 point-2))) 
+
+(point=? (make-point 2 3) (make-point 3 2))
 

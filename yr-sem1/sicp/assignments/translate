@@ -1,0 +1,12 @@
+#lang racket
+;QTN 4
+(define (translate make-point p)
+  ;(define new-x ( + (point-x p) x))
+  ;(define new-y ( + (point-x p) y))
+
+  (set-x! ( + (point-x p) x))
+  (set-y! ( + (point-x p) y))
+
+  (pretty-print(make-point x y)))
+(translate make-point(10 10)
+  

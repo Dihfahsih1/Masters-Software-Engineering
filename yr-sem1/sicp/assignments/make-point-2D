@@ -1,0 +1,50 @@
+#lang racket
+;QTN 6
+(define (make-point-2D x y)
+  (let ((self (cons x y)))
+    (define (point-x)
+      (car self))
+    (define (point-y)
+      (cdr self))
+    (define (pretty-print)
+      (list 'x: (point-x self) 'y: (point-y self)))
+
+    ;QTN 1
+    ;the setter operation to update x value in make-point with a new value 10
+    (define (set-x! p)
+      (begin (set! point-x p)
+             point-x))
+
+    ;the setter operation to update y value in make-point with a new value 20
+    (define (set-y! p)
+      (begin (set! point-y p)
+             point-y))
+    ;QTN 2
+    ;Copying the object point make-point
+    (define (clone p)
+      (make-point-2D(car p) (cdr p)))
+     ;QTN 3 
+    ;Distance between two given points
+    ;(x1, y1) and (x2, y2)
+    ; d = (sqrt(+(square (- x2 x1)) (square(-y2 y1))))
+    ;both sqrt(squareroot) and sqr(square) are abstract functiins that have their implementation in scheme
+    ;so just use them directly cos they are already defined in the language
+    (define (distance p1 p2)
+      (sqrt
+       (+ (sqr (- (point-x p1) (point-x p2)))
+          (sqr (- (point-y p1) (point-y p2))))))
+
+    ;QTN 5
+    (define (point=? point-1 point-2) 
+      (if (and (pair? point-1) (pair? point-2)) 
+          (and (point=? (car point-1) (car point-2)) (point=? (cdr point-1) (cdr point-2))) 
+          (eq? point-1 point-2)))
+;...
+    (lambda (message . args)
+      (case message
+        ((point-x) (point-x))
+        ((point-y) (point-y))
+;..
+;other operations go here
+        (else (error "UKNOWN MESSAGE"))))))
+(define p1 (make-point-2D 4 2))
