@@ -1,0 +1,109 @@
+#lang racket
+(define (make-point-2D x y)
+  (let ((self (vector x y)))
+    ;return the x point
+    (define (point-x)
+      (vector-ref self 0))
+    ;return the y point
+    (define (point-y)
+      (vector-ref self 1))
+    ;setting the x point
+    (define (set-x! value)
+      (vector-set! self 0 value)
+      )
+    ;setting the y point
+    (define (set-y! value_of_y)
+      (vector-set! self 1 value_of_y)
+      )
+    
+    ;copying the object
+    (define (clone) (make-point-2D x y))
+    ;get distance between two points
+   ;calculating distance between two points
+    (define (distance v1 v2)
+      (sqrt (+(+(-(expt (v1 'point-x 0) 2)(* 2(v1 'point-x) (v2 'point-x)))(expt (v2 'point-x) 2))
+      (+(-(expt (v1 'point-y) 2)(* 2(v1 'point-y) (v2 'point-y)))(expt (v2 'point-y) 2))))
+      )
+    ;translate
+    (define (translate p1 dx dy)
+      (p1 'set-x! (- (p1 'point-x) dx))
+      (p1 'set-y! (- (p1 'point-y) dy))
+      )
+    ;if points are equal
+    (define (point=? p1 p2)
+      (if (< (distance p1 p2) 1) #t #f)
+      )
+    ;pretty printing the point
+    (define (pretty-print)
+      (list 'v: self))
+            (lambda (message . args)
+              (case message
+                ((point-x) (point-x))
+                ((point-y) (point-y))
+                ((set-x!) (apply set-x! args))
+                ((set-y!) (apply set-y! args))
+                ((clone) (clone))
+                ((distance) (apply distance args))
+                ((translate) (apply translate args))
+                ((pretty-print) (pretty-print))
+                ((point=?) (apply point=? args))
+                
+                ;..
+                ;other operations go here
+                (else (error "UKNOWN MESSAGE"))))
+    ))
+
+; test
+
+;defining the point
+(define point1 (make-point-2D 4 2))
+(vector? point1)
+
+(display "the point \n")
+(point1 'pretty-print)
+
+;printing the x and y
+(display "the value of x and y \n")
+(point1 'point-x)
+(point1 'point-y)
+
+;setting the x and y
+(display "SET X and Y \n")
+(point1 'set-x! 2)
+(point1 'set-y! 3)
+
+;printing the x and y
+;printing the point
+(display "after setting, print the point \n")
+(point1 'pretty-print)
+
+;making a copy of point1
+(display "making a copy of a point \n")
+(define point2 (point1 'clone))
+
+;setting the x and y again for point 1
+(display "setting x and y for the point \n")
+(point1 'set-x! 4)
+(point1 'set-y! 6)
+
+;printing the point
+(display "Printing the point \n")
+(point1 'pretty-print)
+(point2 'pretty-print)
+
+;get distance between the points
+(display "distance between two points \n")
+(point1 'distance point1 point2)
+
+;performing the translation
+(display "Translating the points \n")
+(point1 'translate point1 10 19)
+
+;printing the point
+(display "print the value after tranlsation \n")
+(point1 'pretty-print)
+
+;checking equality
+(display "checking eqaulity \n")
+(point1 'point=? point1 point2)
+(point1 'pretty-print)

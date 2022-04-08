@@ -1,4 +1,4 @@
-#lang scheme
+#lang racket
 (require rnrs/mutable-pairs-6)
 
 (define x 7)
@@ -41,7 +41,6 @@
   (sqrt
    (+ (sqr (- (point-x p1) (point-x p2)))
       (sqr (- (point-y p1) (point-y p2))))))
-
 (distance (make-point 1 2) (make-point 6 7))
 
 
@@ -51,17 +50,11 @@
 (copy-print (clone (make-point 12 34)))
 
 ;QTN 4
-(define (translate x y)
-  (lambda (dx dy)
-          (translate
-           (+ x dx)
-           (+ y dy))))
-(translate 20 30)
-
 (define (translate p1 dx dy)
       (p1 'set-x! (- (p1 'point-x) dx))
       (p1 'set-y! (- (p1 'point-y) dy))
       )
+
 
 ;QTN 5
 (define (point=? point-1 point-2) 

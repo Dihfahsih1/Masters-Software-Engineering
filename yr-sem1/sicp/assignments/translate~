@@ -9,8 +9,4 @@
 
   (pretty-print(make-point x y)))
 (translate make-point(10 10)
-
-           (define (point=? p1 p2)
-      (if (< (distance p1 p2) 1) #t #f)
-      )
   
