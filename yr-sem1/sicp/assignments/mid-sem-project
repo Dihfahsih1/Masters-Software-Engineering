@@ -1,10 +1,13 @@
 #lang scheme
 (require rnrs/mutable-pairs-6)
 
+<<<<<<< HEAD
 (define x 7)
 (define y 4)
 
 
+=======
+>>>>>>> 16a6114065ed2d0a6d583b79e28c60d171534cd5
 (define (make-point x y)
   (cons x y))
 
@@ -14,14 +17,22 @@
 
 (define (point-y p)
   (cdr p))
+<<<<<<< HEAD
 ;QTN 1
 ;the setter operation to update x value in make-point with a new value 10
 (define (set-x! p)
   (begin (set! point-x p)
+=======
+
+;the setter operation to update x value in make-point with a new value 10
+(define (set-x! p)
+  (begin (set! point-x 10)
+>>>>>>> 16a6114065ed2d0a6d583b79e28c60d171534cd5
          point-x))
 
 ;the setter operation to update y value in make-point with a new value 20
 (define (set-y! p)
+<<<<<<< HEAD
   (begin (set! point-y p)
          point-y))
 ;QTN 2
@@ -43,11 +54,26 @@
       (sqr (- (point-y p1) (point-y p2))))))
 
 (distance (make-point 1 2) (make-point 6 7))
+=======
+  (begin (set! point-y 20)
+         point-y))
+
+;Copying the object point make-point
+
+(define (clone make-point p)
+  (let ((new (p)))
+    (set-car! new p)
+    (set-cdr! new p)
+    new))
+  
+
+>>>>>>> 16a6114065ed2d0a6d583b79e28c60d171534cd5
 
 
 (define (pretty-print p)
   (list 'x: (point-x p) 'y: (point-y p)))
 (pretty-print (make-point 2 3))
+<<<<<<< HEAD
 (copy-print (clone (make-point 12 34)))
 
 ;QTN 4
@@ -71,3 +97,18 @@
 
 (point=? (make-point 2 3) (make-point 3 2))
 
+=======
+
+(define (copy-print p)
+  (list 'copy-x: (point-x p) 'copy-y: (point-y p)))
+(copy-print (clone 20 40))
+ 
+
+
+
+
+
+
+
+;solution
+>>>>>>> 16a6114065ed2d0a6d583b79e28c60d171534cd5
