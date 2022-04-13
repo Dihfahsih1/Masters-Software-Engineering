@@ -79,8 +79,8 @@ let leaveAndRemoveLocalStream = async () => {
     }
 
     await client.leave()
-    //This is somewhat of an issue because if user leaves without actaull pressing leave button, it will not trigger
-    deleteMember()
+    //This is somewhat of an issue because if user leaves without actaully pressing leave button, it will not trigger
+    //deleteMember()
     window.open('/', '_self')
 }
 
@@ -125,18 +125,18 @@ let getMember = async (user) => {
     return member
 }
 
-let deleteMember = async () => {
-    let response = await fetch('/delete_member/', {
-        method:'POST',
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
-    })
-    let member = await response.json()
-}
+// let deleteMember = async () => {
+//     let response = await fetch('/delete_member/', {
+//         method:'POST',
+//         headers: {
+//             'Content-Type':'application/json'
+//         },
+//         body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
+//     })
+//     let member = await response.json()
+// }
 
-window.addEventListener("beforeunload",deleteMember);
+//window.addEventListener("beforeunload",deleteMember);
 
 joinAndDisplayLocalStream()
 
