@@ -1,0 +1,8 @@
+#lang r5rs scheme
+
+(define colors
+(vector "red" "orange" "yellow" "green" "blue" "indigo" "violet"))
+
+
+(vector-map (λ (i x) (* x x))
+            (vector-unfold (λ (i x) (values x (+ x 1))) 4 1))
