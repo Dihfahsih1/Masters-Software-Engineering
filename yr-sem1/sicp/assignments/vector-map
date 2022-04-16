@@ -1,0 +1,6 @@
+#lang racket
+
+(vector-map (lambda (x) (* x x))
+  (vector 1 2 3 4))
+
+(vector-for-each display (vector "red" "orange"))
