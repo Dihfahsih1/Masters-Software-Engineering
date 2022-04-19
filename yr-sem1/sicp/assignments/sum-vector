@@ -1,4 +1,6 @@
 #lang scheme
+
+;Qtn 2
 (define (zero-vector len)
   (make-vector len 0))
 

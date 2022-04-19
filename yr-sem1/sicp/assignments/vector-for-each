@@ -1,0 +1,9 @@
+#lang scheme
+
+;qtn 3b
+(define (vector-for-each proc vec)
+(for ([color vec])
+  (display (string-append "\"" color "\"")) 
+  ))
+
+(vector-for-each display (vector "red" "orange"))

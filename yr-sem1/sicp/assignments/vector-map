@@ -1,6 +1,6 @@
 #lang racket
-
+;Qtn 3a
+;vector-map implemented as map function for lists.
 (vector-map (lambda (x) (* x x))
   (vector 1 2 3 4))
 
-(vector-for-each display (vector "red" "orange"))
