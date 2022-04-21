@@ -1,9 +1,6 @@
 
 #lang racket
 
-;;Name: MUGOYA DIHFAHSIH
-;;Student No. 2100702353
-
 ;Part 1: Scheme Vectors
 ;qtn 1
 (define colors
