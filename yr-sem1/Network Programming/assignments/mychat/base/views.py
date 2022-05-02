@@ -16,11 +16,11 @@ def room(request):
 
 
 def getToken(request):
-    appId = "YOUR APP ID"
-    appCertificate = "YOUR APP CERTIFICATE"
+    appId = "aabebec3adee4a65bd6db4d8e2c91250"
+    appCertificate = "c76c80c0c80a47bda852aa08b6013918"
     channelName = request.GET.get('channel')
     uid = random.randint(1, 230)
-    expirationTimeInSeconds = 3600
+    expirationTimeInSeconds = 36000
     currentTimeStamp = int(time.time())
     privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
     role = 1
@@ -53,7 +53,7 @@ def getMember(request):
     return JsonResponse({'name':member.name}, safe=False)
 
 @csrf_exempt
-def deleteMember(request):
+def deletedMember(request):
     data = json.loads(request.body)
     try:
         member = RoomMember.objects.get(
