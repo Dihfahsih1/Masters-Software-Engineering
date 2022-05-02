@@ -1,10 +1,11 @@
 
-const APP_ID = "{% get_env_var 'Appid' %}"
-const CHANNELL = 'Channel_name'
-const TOKENN = "{% get_en_var 'Token' %}"
+const APP_ID = "aabebec3adee4a65bd6db4d8e2c91250"
+const CHANNEL = 'main'
+const TOKEN = "006aabebec3adee4a65bd6db4d8e2c91250IAA1j99jo5iZy6oE7aVATEAeiP6HGY7YEXsfYZAAAC6SWWTNKL8AAAAAEABD/MfDWzJxYgEAAQDUMXFi"
 
-const TOKEN = sessionStorage.getItem('token')
-const CHANNEL = sessionStorage.getItem('room')
+// const APP_ID = "aabebec3adee4a65bd6db4d8e2c91250"
+// const TOKEN = sessionStorage.getItem('token')
+// const CHANNEL = sessionStorage.getItem('room')
 let UID = sessionStorage.getItem('UID')
 
 let NAME = sessionStorage.getItem('name')
@@ -18,7 +19,7 @@ let joinAndDisplayLocalStream = async () => {
     document.getElementById('room-name').innerText = CHANNEL
 
     client.on('user-published', handleUserJoined)
-    client.on('user-left', handleUserLeft)
+    //client.on('user-left', handleUserLeft)
 
     try{
         UID = await client.join(APP_ID, CHANNEL, TOKEN, UID)
@@ -67,10 +68,10 @@ let handleUserJoined = async (user, mediaType) => {
     }
 }
 
-let handleUserLeft = async (user) => {
-    delete remoteUsers[user.uid]
-    document.getElementById(`user-container-${user.uid}`).remove()
-}
+// let handleUserLeft = async (user) => {
+//     delete remoteUsers[user.uid]
+//     document.getElementById(`user-container-${user.uid}`).remove()
+// }
 
 let leaveAndRemoveLocalStream = async () => {
     for (let i=0; localTracks.length > i; i++){
@@ -80,7 +81,7 @@ let leaveAndRemoveLocalStream = async () => {
 
     await client.leave()
     //This is somewhat of an issue because if user leaves without actaully pressing leave button, it will not trigger
-    deleteMember()
+    //deleteMember()
     window.open('/', '_self')
 }
 
@@ -125,18 +126,18 @@ let getMember = async (user) => {
     return member
 }
 
-let deleteMember = async () => {
-    let response = await fetch('/delete_member/', {
-        method:'POST',
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
-    })
-    let member = await response.json()
-}
+// let deleteMember = async () => {
+//     let response = await fetch('/delete_member/', {
+//         method:'POST',
+//         headers: {
+//             'Content-Type':'application/json'
+//         },
+//         body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
+//     })
+//     let member = await response.json()
+// }
 
-window.addEventListener("beforeunload",deleteMember);
+//window.addEventListener("beforeunload",deleteMember);
 
 joinAndDisplayLocalStream()
 
@@ -144,3 +145,5 @@ document.getElementById('leave-btn').addEventListener('click', leaveAndRemoveLoc
 document.getElementById('camera-btn').addEventListener('click', toggleCamera)
 document.getElementById('mic-btn').addEventListener('click', toggleMic)
 
+
+console.log("Connected to the API")
