@@ -1,9 +1,9 @@
 
 
-const APP_ID = "aabebec3adee4a65bd6db4d8e2c91250"
+const APP_ID = 'aabebec3adee4a65bd6db4d8e2c91250'
 const TOKEN = sessionStorage.getItem('token')
 const CHANNEL = sessionStorage.getItem('room')
-let UID = sessionStorage.getItem('UID')
+let UID = Number(sessionStorage.getItem('UID'))
 
 let NAME = sessionStorage.getItem('name')
 
@@ -16,8 +16,7 @@ let joinAndDisplayLocalStream = async () => {
     document.getElementById('room-name').innerText = CHANNEL
 
     client.on('user-published', handleUserJoined)
-    client.on('user-left', handleUserLeft)
-
+     
     try{
         UID = await client.join(TOKEN, APP_ID, CHANNEL, UID)
     }catch(error){

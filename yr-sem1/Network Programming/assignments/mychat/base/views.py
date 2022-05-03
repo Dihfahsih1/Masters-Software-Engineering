@@ -20,7 +20,7 @@ def getToken(request):
     appCertificate = "c76c80c0c80a47bda852aa08b6013918"
     channelName = request.GET.get('channel')
     uid = random.randint(1, 230)
-    expirationTimeInSeconds = 36000
+    expirationTimeInSeconds = 3600 * 24
     currentTimeStamp = int(time.time())
     privilegeExpiredTs = currentTimeStamp + expirationTimeInSeconds
     role = 1
