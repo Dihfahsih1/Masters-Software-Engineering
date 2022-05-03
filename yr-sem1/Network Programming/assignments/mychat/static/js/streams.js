@@ -12,6 +12,7 @@ let localTracks = []
 let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
+    console.log("#################ERROR:################")
     document.getElementById('room-name').innerText = CHANNEL
 
     client.on('user-published', handleUserJoined)
@@ -130,7 +131,7 @@ let deleteMember = async () => {
         },
         body:JSON.stringify({'name':NAME, 'room_name':CHANNEL, 'UID':UID})
     })
-    
+
     let member = await response.json()
 }
 
