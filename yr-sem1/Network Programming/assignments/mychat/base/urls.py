@@ -8,5 +8,5 @@ urlpatterns = [
 
     path('create_member/', views.createMember),
     path('get_member/', views.getMember),
-    path('deleted_member/', views.deletedMember),
+    path('delete_member/', views.deleteMember),
 ]   
