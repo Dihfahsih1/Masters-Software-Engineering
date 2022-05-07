@@ -7,7 +7,6 @@
 (require plot)
 (require math)
 
-
 ;;; We'll use the text , available for free from
 ; fiction story book
 ;(define moby (string->url "http://textfiles.com/stories/16.lws"))
@@ -21,7 +20,7 @@
 ;;; punctuation, and then extra spaces
 (define moby-text (string-normalize-spaces
 		   (remove-punctuation
-		   (string-downcase (port->string in)) #:websafe? #t)))
+		    (string-downcase (port->string in)) #:websafe? #t)))
 			 
 ;;; Close the input port
 (close-input-port in)
