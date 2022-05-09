@@ -12,7 +12,6 @@ let localTracks = []
 let remoteUsers = {}
 
 let joinAndDisplayLocalStream = async () => {
-    console.log("#################ERROR:################")
     document.getElementById('room-name').innerText = CHANNEL
 
     client.on('user-published', handleUserJoined)

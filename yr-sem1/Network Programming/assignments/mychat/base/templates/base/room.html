@@ -23,10 +23,20 @@
             <img class="control-icon" id="leave-btn" src="{% static 'images/leave.svg' %}" />
         </div>
     </section>
+    <script>
+        // setup the video element and attach it to the Dash player
+        function setupVideo() {
+        var url = "http://dash.edgesuite.net/akamai/test/caption_test/ElephantsDream/elephants_dream_480p_heaac5_1.mpd";
+        var context = new Dash.di.DashContext();
+        var player = new MediaPlayer(context);
+                        player.startup();
+                        player.attachView(document.querySelector("#video-streams"));
+                        player.attachSource(url);
+        }
+    </script>
 </main>
 
 
 <script type="text/javascript" src="{% static 'assets/AgoraRTC_N-4.8.0.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/streams.js' %}" ></script>
-<script type="text/javascript" src="{% static 'js/dash.all.js' %}" ></script>
 {% endblock content %}
