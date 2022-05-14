@@ -3,7 +3,7 @@
 import subprocess 
   
 for ping in range(1,10): 
-    address = "10.10.168.1" + str(ping) 
+    address = "10.10.232.182" + str(ping) 
     res = subprocess.call(['ping', '-c', '3', address]) 
     if res == 0: 
         print( "ping to", address, "OK") 
