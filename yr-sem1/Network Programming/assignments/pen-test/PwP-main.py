@@ -1,4 +1,4 @@
-
+import port_scanner as pscan
 #import tcp_proxy as tproxy
 import tcp_server as tserver
 import p_netcat as pnetcat
@@ -6,10 +6,9 @@ import mechbrowser as mbrowser
 #import keylog as klog
 import nmapscanner as nscanner
 import sniffer as psniff
-import port_scanner as pscan
 
 print ('Welcome to Pentesting-with-Python')
-print ('Penetest is a simple framework providing basic toolkit \n')
+print ('PwP is a simple framework providing basic toolkit \n')
 print ('Available remote tools:')
 print ('\t1. TCP port scanner')
 print ('\t2. Nmap port scanner (requires nmap-python)')
@@ -20,8 +19,8 @@ print ('\t6. Website source code grabber')
 print ('\n')
 print ('Available local tools:')
 print ('\t7. Keylogger')
-print ('\t8. Packet sniffer')
-
+print ('\t8. Packet sniffer'
+)
 def main_menu():
     choice = input("Select tool > ")
 
