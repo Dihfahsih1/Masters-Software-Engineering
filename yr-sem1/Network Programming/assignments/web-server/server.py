@@ -1,5 +1,5 @@
 #(i) create a connection socket when contacted by a client (browser);
-#(ii) receive the HTTP requestfrom this connection;
+#(ii) receive the HTTP request from this connection;
 #(iii) parse the request to determine the specific file being requested; 
 #(iv) get the requested file from the server’s file system; 
 #(v) create an HTTP response message consisting of the requested file preceded by header lines;
