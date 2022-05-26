@@ -8,7 +8,7 @@ This a more of a livestream app that is makes use of MPEG- DASH for proper video
 
 #### 1 - Clone repo
 ```
-git clone https://github.com/Dihfahsih1/mychat
+git clone https://github.com/Dihfahsih1/Masters-Software-Engineering/tree/main/yr-sem1/Network%20Programming/assignments/mychat
 ```
 
 #### 2 - Install requirements
