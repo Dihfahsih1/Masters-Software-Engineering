@@ -2,7 +2,11 @@ from color import Color
 import pygame
 
 class Screen:
-	def __init__(self, width=800, height=600, background_color=Color.BLACK, font_type="monospace", font_size=35, clock_tick=30):
+	def __init__(self, width=800, height=600,
+              background_color=Color.BLACK, 
+              font_type="monospace", 
+              font_size=35,
+              clock_tick=30):
 		self.width = width
 		self.height = height
 		self.background_color = background_color
@@ -31,6 +35,5 @@ class Screen:
 		self.draw_enemies(enemy_list)
 		self.draw_player(player)
 		self.draw_score_label(score)
-
 		self.clock.tick(self.clock_tick)
 		pygame.display.update()
